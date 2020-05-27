@@ -9,3 +9,5 @@ export const cities = (state = {}, action) => {//nmbre del reducer
             return state;
     }   
 }
+
+export const getForecastDataFromCities = (state, city) => state[city] && state[city].forecastData;

@@ -14,7 +14,6 @@ export const setSelectedCity = payload => {
         dispatch(setCity(payload)) //se establece la ciudad actual disparando la accion setCity (line 6)
 
         const forecastData = await getWeatherForecast(payload) //payload = city
-        console.log('forecastData', forecastData);
         //Modificar el estado con el resultado de la promise.
         dispatch(setForecastData({city: payload, forecastData}));
     }

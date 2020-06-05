@@ -5,27 +5,34 @@ import './styles.css';
 
 
 
-const LocationList = ({cities, onSelectedLocation}) => {
+const LocationList = ({ cities, onSelectedLocation }) => {
     const handleWeatherLocationClick = city => {
-        console.log("handle:",city);
+        console.log("handle:", city);
         onSelectedLocation(city);
     }
     const strToComponent = cities => ( //solo parentesis porque solo retonara una linea
-        cities.map( city => <WheatherLocation key={city} city={city} onWeatherLocationClick={() => handleWeatherLocationClick(city)} />)
+        cities.map(city => (
+            <WheatherLocation
+                key={city.key} 
+                city={city.name} 
+                onWeatherLocationClick={() => handleWeatherLocationClick(city.name)} 
+                data={city.data} />
+            )
+        )
     );
 
-    return(
-    <div className="locationList">
-        {
-            strToComponent(cities)
-        }
-    </div>
+    return (
+        <div className="locationList">
+            {
+                strToComponent(cities)
+            }
+        </div>
     )
 }
 
 LocationList.propTypes = {
     cities: PropTypes.array.isRequired,
-    onSelectedLocation:PropTypes.func.isRequired,
+    onSelectedLocation: PropTypes.func.isRequired,
 }
 
 export default LocationList;
